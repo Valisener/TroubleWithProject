@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+
+
+
+    
+    <string name="textview_movie_title">Movie Title</string>
+
+    <string name="textview_movie_released_text">Released on : </string>
+
+    <string name="textview_movie_popularity_text">Popularity</string>
+
+    <!--Menu items-->
+    <string name="menu_mostpopular">Most Popular</string>
+    <string name="menu_upcomingmovies">Upcoming Movies</string>
+    <string name="menu_latestmovies">Latest Movies</string>
+    <string name="menu_nowplaying">Now Playing</string>
+    <string name="menu_toprated">Top Rated</string>
+    <string name="menu_refresh">REFRESH</string>
+    <string name="menu_favorites">My Favorites</string>
+    <string name="menu_watchlist">My Watchlist</string>
+
+
+
+</resources>
