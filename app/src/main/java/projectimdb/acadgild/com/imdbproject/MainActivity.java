@@ -15,13 +15,15 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieUrls {
     TextView movie_title;
+    String topRatedMoviesLink = "";
     private RecyclerView recyclerView;
 //    Movie movies;
     ArrayList<Movie> arrayMovies = new ArrayList<>();
     RVAdapter rvAdapter;
     private ListView listView;
+    GetMoviesList getMoviesList;
 
 
     @Override
@@ -30,15 +32,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView= findViewById(R.id.recyclerview);
 
-        GetMoviesList getMoviesList = new GetMoviesList(MainActivity.this);
+        getMoviesList = new GetMoviesList(MainActivity.this);
 
         try {
-            arrayMovies = (ArrayList<Movie>) getMoviesList.execute().get();
+            arrayMovies = (ArrayList<Movie>) getMoviesList.execute(URLMOVIESUPCOMING).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+
+
+
+//        Log.e("latest movies url",  URL);
 
 //        for (int i = 0; i < arrayMovies.size();i++){
 //            Log.e("Array " + i,  String.valueOf(arrayMovies.get(i).getRating()));
@@ -76,6 +83,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.submenu_mostpopular:
+                loadMovies(URLMOVIESPOPULAR);
+                break;
+            case R.id.submenu_upcoming:
+                loadMovies(URLMOVIESUPCOMING);
+                break;
+            case R.id.submenu_latestmovies:
+                loadMovies(URLMOVIESLATEST);
+                break;
+            case R.id.submenu_nowplaying:
+                loadMovies(URLMOVIESNOWPLAYING);
+                break;
+            case R.id.submenu_toprated:
+                loadMovies(URLMOVIESTOPRATED);
+                break;
+
+
+
             case R.id.menu_refresh:
                 rvAdapter.notifyDataSetChanged();
                 break;
@@ -87,6 +112,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         return true;
+    }
+
+    public void loadMovies(String url){
+//        GetMoviesList getNewMoviesList = new GetMoviesList.execute(url).get();
+        GetMoviesList newList= new GetMoviesList(MainActivity.this);
+        try {
+            arrayMovies = (ArrayList<Movie>) newList.execute(url).get();
+            for (Movie m: arrayMovies){
+                m.loadImage();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        rvAdapter = new RVAdapter(MainActivity.this,arrayMovies);
+        recyclerView.setAdapter(rvAdapter);
+        rvAdapter.notifyDataSetChanged();
     }
 
 

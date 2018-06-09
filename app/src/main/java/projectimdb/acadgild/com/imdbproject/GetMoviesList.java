@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GetMoviesList extends AsyncTask<Void, Void, ArrayList<Movie>> {
+public class GetMoviesList extends AsyncTask<String, Void, ArrayList<Movie>> {
     RVAdapter adapter;
     private ArrayList<Movie> movieArrayList = new ArrayList<>();
     private Context context;
@@ -27,7 +27,7 @@ public class GetMoviesList extends AsyncTask<Void, Void, ArrayList<Movie>> {
 
 
     @Override
-    protected ArrayList<Movie> doInBackground(Void... voids) {
+    protected ArrayList<Movie> doInBackground(String... theUrl) {
         //image url
         String imageUrl = "https://image.tmdb.org/t/p/w185_and_h278_bestv2/";
 
@@ -35,9 +35,11 @@ public class GetMoviesList extends AsyncTask<Void, Void, ArrayList<Movie>> {
         JsonFileHandler jsonFileHandler = new JsonFileHandler();
         //Define the url address to the api
         // wont use latest for now its not working right sooo use something else
-        String url = "http://api.themoviedb.org/3/movie/upcoming?api_key=f47dd4de64c6ef630c2b0d50a087cc33";
+//        String url = "http://api.themoviedb.org/3/movie/upcoming?api_key=f47dd4de64c6ef630c2b0d50a087cc33";
+
+
         //
-        String jsonString = jsonFileHandler.getJsonFile(url);
+        String jsonString = jsonFileHandler.getJsonFile(theUrl[0]);
         Log.e("Jimbo Starting loop", "");
 
 

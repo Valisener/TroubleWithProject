@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/movie_image_modify"
         android:layout_width="185px"
-        android:layout_height="275px"
+        android:layout_height="200px"
         android:src="@drawable/loading"
 
 
@@ -58,11 +58,11 @@
             android:layout_height="wrap_content"
             android:text="@string/textview_movie_popularity_text" />
 
-            <!--<ImageView-->
-                <!--android:id="@+id/movie_popularity_image_modify"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:src="@drawable/ic_launcher_background" />-->
+            <ImageView
+                android:id="@+id/movie_popularity_image_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background" />
 
         </LinearLayout>
         <LinearLayout
@@ -71,11 +71,11 @@
             android:orientation="horizontal"
             >
 
-            <!--<ImageView-->
-                <!--android:id="@+id/imageview_star_image"-->
-                <!--android:layout_width="49dp"-->
-                <!--android:layout_height="49dp"-->
-                <!--app:srcCompat="@drawable/ic_launcher_foreground" />-->
+            <ImageView
+                android:id="@+id/imageview_star_image"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                 />
 
             <TextView
                 android:id="@+id/textview_open_bracket"
